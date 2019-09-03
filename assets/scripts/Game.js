@@ -83,12 +83,48 @@ cc.Class({
         _score: 0,
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
     start () {
+        this.initGameData();
+        this.initEventListener();
+    },
 
+    initGameData () {
+        this._mouseDataTable = [
+            {
+                mouseName: "harmful_mouse_0",
+                scoreUpdateFunc: function () {
+                    this._score += 100;
+                }
+            },
+            {
+                mouseName: "harmful_mouse_1",
+                scoreUpdateFunc: function () {
+                    this._score += 500;
+                }
+            },
+            {
+                mouseName: "kind_mouse_0",
+                scoreUpdateFunc: function () {
+                    if (this._score === 0) {
+                        this._score += 200;
+                    } else {
+                        this._score = Math.floor(this._score * 1.2);
+                    }
+                }
+            },
+            {
+                mouseName: "kind_mouse_1",
+                scoreUpdateFunc: function () {
+                    this._score -= 100;
+                }
+            },
+            {
+                mouseName: "rabbit_0",
+                scoreUpdateFunc: function () {
+                    this._score = Math.floor(this._score / 2);
+                }
+            }
+        ];
     },
 
     // update (dt) {},
